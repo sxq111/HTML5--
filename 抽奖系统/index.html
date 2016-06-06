@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Particle Web</title>
+    <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    #main{
+      border: solid;
+      width:400px;
+      height: 200px;
+      text-align: center;
+      margin: 0 auto;
+      position: relative;
+    }
+    .mybtn{
+      background: #000;
+      border-radius: 5px;
+      color:white;
+      font-size: 20px;
+    }
+    .mybtn{
+      margin-top: 50px;
+      margin-left: 64px;
+      width: 100px;
+      height:40px;
+      display: block;
+      float:left;
+    }
+    .randomtext{
+      background-color: gray;
+      height:80px;
+      font-size: 40px;
+      color: red;
+    }
+    .mybtn:hover{
+       width: 96px;
+      height:36px;
+      border:2px solid lightseagreen ;
+    }
+    </style>
+  </head>
+  <body>
+    <div id="main">
+      <div>抽奖软件</div>
+      <div class="randomtext" id="randomtext">奖励文本</div>
+      <span id="startbtn" class="mybtn">
+        开始
+      </span>
+       <span id="endbtn" class="mybtn">
+         停止
+      </span>
+    </div>
+
+  
+  <script src="index.js" charset="utf-8"></script>
+
+</body>
+</html>
