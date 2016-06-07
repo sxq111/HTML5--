@@ -7,6 +7,21 @@
   }
   
   function main() {
+    
+  // var obj={};理解constructor
+  //  alert(obj.constructor==Object);
+ // function sarr()
+ // {
+ //   var values=new Array();
+  //  values.push.apply(values,arguments);
+  //  values.printout=function () {
+  //    return this.join("/");
+  //  }
+  //  return values;
+ // }
+ // var colors=new sarr("re","asd","qwe");
+  //alert(colors.printout());
+  
   var canvasEl = document.getElementById('canvas');
   var ctx = canvasEl.getContext('2d');
   var mousePos = [0, 0];
