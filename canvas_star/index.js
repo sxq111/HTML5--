@@ -8,19 +8,29 @@
   
   function main() {
     
-  // var obj={};理解constructor
-  //  alert(obj.constructor==Object);
- // function sarr()
- // {
- //   var values=new Array();
-  //  values.push.apply(values,arguments);
-  //  values.printout=function () {
+    
+    
+  // var obj={};//理解constructor
+   // alert(obj.constructor==Object);
+ // function sarr(val)
+//  {
+   // var values=new Array();
+   // values.myval=val;
+   // values.push.apply(values,arguments);
+    //values.printout=function () {
   //    return this.join("/");
-  //  }
+  //  };
+  //  values.muprintval=function(){
+   //   return val;
+  //  };
   //  return values;
- // }
- // var colors=new sarr("re","asd","qwe");
-  //alert(colors.printout());
+ //}
+ // //var colors=new sarr("re","asd","qwe");
+// // alert(colors.printout());
+ // var test=sarr("a22sd");
+
+// alert( test.muprintval());
+
   
   var canvasEl = document.getElementById('canvas');
   var ctx = canvasEl.getContext('2d');

@@ -126,7 +126,7 @@
 
             star[i][1]=Math.random()*h*2-y*2;
 
-            star[i][2]=Math.round(Math.random()*z);
+            star[i][2]=Math.round(10);
 
             star[i][3]=0;
 
@@ -185,7 +185,7 @@
 
             star[i][1]+=0; if(star[i][1]>y<<1) { star[i][1]-=h<<1; test=false; } if(star[i][1]<-y<<1) { star[i][1]+=h<<1; test=false; }
 
-            star[i][2]-=star_speed; if(star[i][2]>z) { star[i][2]-=z; test=false; } if(star[i][2]<0) { star[i][2]+=z; test=false; }
+            star[i][2]+=star_speed; if(star[i][2]>z) { star[i][2]-=z; test=false; } if(star[i][2]<0) { star[i][2]+=z; test=false; }
 
             star[i][3]=x2+(star[i][0]/star[i][2])*star_ratio;
 
