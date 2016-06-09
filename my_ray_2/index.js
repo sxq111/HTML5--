@@ -18,14 +18,16 @@ function main()
   var gravity=0.5;
  canvasEl.width=canvasEl.clientWidth;
  canvasEl.height=canvasEl.clientHeight;
- var Z_max=(canvasEl.width+canvasEl.height)/2;
+ var Z_max=(canvasEl.width+canvasEl.height);
  var centerX=canvasEl.width/2;
  var centerY=canvasEl.height/2;
  var dist=Z_max;
  var movx;
  var movy;
  var drawmode=true;
- var speed=13;
+ var hispeed=120;
+ var lowspeed=60;
+  var speed=lowspeed;
 function addstar()
 {
    star={
@@ -47,7 +49,7 @@ function addstar()
     canvasEl.height=canvasEl.clientHeight;
     centerX=canvasEl.width/2;
     centerY=canvasEl.height/2;
-    Z_max=(canvasEl.width+canvasEl.height)/2;
+    Z_max=(canvasEl.width+canvasEl.height);
     starlist=[];
 
 
@@ -63,12 +65,12 @@ function addstar()
  window.onmousedown=function (e) {
    //鼠标点击事件
    drawmode=false;
-   speed=26;
+   speed=hispeed;
  }
  window.onmouseup=function(e)
  {
    drawmode=true;
-   speed=13;
+   speed=lowspeed;
  }
 
   
@@ -76,7 +78,7 @@ function addstar()
   function update() 
   {
 
-    for(var i=0;i<15;i++)
+    for(var i=0;i<7;i++)
     {
         addstar();
     }
@@ -84,12 +86,14 @@ function addstar()
       e.globalZ-=speed;
       e.posxpre=e.posx;
       e.posypre=e.posy;
-      e.posx=centerX+(e.globalX/e.globalZ)*Z_max/1.5;  
-      e.posy=centerY+(e.globalY/e.globalZ)*Z_max/1.5;  
+    //  e.posx=centerX+(e.globalX/e.globalZ)*Z_max/1.5;  
+    //  e.posy=centerY+(e.globalY/e.globalZ)*Z_max/1.5;  
+      e.posx=centerX+e.globalX*(Z_max/(e.globalZ+Z_max));
+      e.posy=centerY+e.globalY*(Z_max/(e.globalZ+Z_max));
       e.globalX+=movx/30;
       e.globalY+=movy/30;
       //alert(e.posx+"--"+e.posy);
-      if(e.globalZ<0)
+      if(e.globalZ<-Z_max)
       {
         e.die=true;
       }
@@ -112,19 +116,22 @@ function addstar()
     starlist.forEach(function(e){
       if(drawmode){
         ctx.beginPath();
-        var radius=6*(Z_max-e.globalZ)/Z_max  ;
-        ctx.fillStyle="#FFF";
+        var radius=3*(Z_max-e.globalZ)/Z_max  ;
+        var lwidth=1*(Z_max-e.globalZ)/Z_max  ;
+        ctx.lineWidth=lwidth;
+        ctx.strokeStyle="#FFF";
         ctx.arc(e.posx,e.posy,radius,0,2*Math.PI);
-        ctx.fill();
+        ctx.stroke();
       }else
       {
         ctx.beginPath();
-        var lwidth=6*(Z_max-e.globalZ)/Z_max  ;
+        var lwidth=3*(Z_max-e.globalZ)/Z_max  ;
         ctx.lineWidth=lwidth;
         ctx.strokeStyle="#FFF";
         if(e.posxpre && e.posy){
         ctx.moveTo(e.posxpre,e.posypre);
         ctx.lineTo(e.posx,e.posy);
+        //ctx.lineTo(2*e.posx-e.posxpre,2*e.posy-e.posypre);
         }
         ctx.stroke();
       }
