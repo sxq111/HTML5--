@@ -1,14 +1,13 @@
-window.onload=main;
 
   function getRgb(r,g,b)
   {
     return "rgb("+ r+","+g+","+b+")";
   }
 
-function main()
+function main_ray()
 {
  
- 
+ var id="ray";
   var starlist=[];
 
   var canvasEl = document.getElementById('canvas');
@@ -18,16 +17,14 @@ function main()
   var gravity=0.5;
  canvasEl.width=canvasEl.clientWidth;
  canvasEl.height=canvasEl.clientHeight;
- var Z_max=(canvasEl.width+canvasEl.height);
+ var Z_max=(canvasEl.width+canvasEl.height)/2;
  var centerX=canvasEl.width/2;
  var centerY=canvasEl.height/2;
  var dist=Z_max;
  var movx;
  var movy;
  var drawmode=true;
- var hispeed=120;
- var lowspeed=60;
-  var speed=lowspeed;
+ var speed=13;
 function addstar()
 {
    star={
@@ -49,7 +46,7 @@ function addstar()
     canvasEl.height=canvasEl.clientHeight;
     centerX=canvasEl.width/2;
     centerY=canvasEl.height/2;
-    Z_max=(canvasEl.width+canvasEl.height);
+    Z_max=(canvasEl.width+canvasEl.height)/2;
     starlist=[];
 
 
@@ -61,28 +58,29 @@ function addstar()
    mousePos[1]=e.clientY;
    movx=e.clientX-centerX;
    movy=e.clientY-centerY;
-
-
-
-
  }
  window.onmousedown=function (e) {
    //鼠标点击事件
    drawmode=false;
-   speed=hispeed;
+   speed=26;
  }
  window.onmouseup=function(e)
  {
    drawmode=true;
-   speed=lowspeed;
+   speed=13;
  }
 
   
- window.requestAnimationFrame(update);
+ update();
   function update() 
   {
+      if(globalid!=id)
+  {
+      //alert("return ray");
+      return;
+  }
 
-    for(var i=0;i<7;i++)
+    for(var i=0;i<15;i++)
     {
         addstar();
     }
@@ -90,14 +88,12 @@ function addstar()
       e.globalZ-=speed;
       e.posxpre=e.posx;
       e.posypre=e.posy;
-    //  e.posx=centerX+(e.globalX/e.globalZ)*Z_max/1.5;  
-    //  e.posy=centerY+(e.globalY/e.globalZ)*Z_max/1.5;  
-      e.posx=centerX+e.globalX*(Z_max/(e.globalZ+Z_max));
-      e.posy=centerY+e.globalY*(Z_max/(e.globalZ+Z_max));
+      e.posx=centerX+(e.globalX/e.globalZ)*Z_max/1.5;  
+      e.posy=centerY+(e.globalY/e.globalZ)*Z_max/1.5;  
       e.globalX+=movx/30;
       e.globalY+=movy/30;
       //alert(e.posx+"--"+e.posy);
-      if(e.globalZ<-Z_max)
+      if(e.globalZ<0)
       {
         e.die=true;
       }
@@ -120,22 +116,19 @@ function addstar()
     starlist.forEach(function(e){
       if(drawmode){
         ctx.beginPath();
-        var radius=3*(Z_max-e.globalZ)/Z_max  ;
-        var lwidth=1*(Z_max-e.globalZ)/Z_max  ;
-        ctx.lineWidth=lwidth;
-        ctx.strokeStyle="#FFF";
+        var radius=6*(Z_max-e.globalZ)/Z_max  ;
+        ctx.fillStyle="#FFF";
         ctx.arc(e.posx,e.posy,radius,0,2*Math.PI);
-        ctx.stroke();
+        ctx.fill();
       }else
       {
         ctx.beginPath();
-        var lwidth=3*(Z_max-e.globalZ)/Z_max  ;
+        var lwidth=6*(Z_max-e.globalZ)/Z_max  ;
         ctx.lineWidth=lwidth;
         ctx.strokeStyle="#FFF";
         if(e.posxpre && e.posy){
         ctx.moveTo(e.posxpre,e.posypre);
         ctx.lineTo(e.posx,e.posy);
-        //ctx.lineTo(2*e.posx-e.posxpre,2*e.posy-e.posypre);
         }
         ctx.stroke();
       }
