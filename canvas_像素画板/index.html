@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Particle Web</title>
+    <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body{
+        position: relative;
+        width: 800px;
+        height: 1600px;
+    }
+        #canvas{
+            display: block;
+            width: 800px;
+            height: 800px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            border: solid;
+            border-width: 1px;
+        }
+        #mycolor{
+            text-align: center;
+            padding: 4px;
+            position: fixed;
+            top: 0;
+            left: 820px;
+            border: solid;
+            border-width: 1px;
+        }
+        #mycolor .colors{
+            border: solid;
+            border-width: 3px;
+            border-color: peachpuff;
+        }
+
+        #mycolor .colors.active
+        {
+            border: solid;
+            border-width: 3px;
+            border-color: crimson;
+        }
+    </style>
+  </head>
+  <body>
+        <canvas id="canvas"></canvas>
+        <div id="mycolor">
+            1<input type="color" class="colors">
+            2<input type="color" class="colors">
+            3<input type="color" class="colors">
+            4<input type="color" class="colors">
+            5<input type="color" class="colors">
+            6<input type="color" class="colors">
+            7<input type="color" class="colors">
+            8<input type="color" class="colors">
+            9<input type="color" class="colors">
+            <br/>
+            <br/>
+            <span>调色板</span>
+        </div>
+
+        <script src="index.js" charset="utf-8"></script>
+
+    </body>
+</html>
